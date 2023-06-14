@@ -1,0 +1,8 @@
+# 编辑器配置 最终安装vscode中editorconfig for vs code插件
+root = true
+
+[*]  
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf

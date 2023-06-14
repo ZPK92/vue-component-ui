@@ -1,0 +1,46 @@
+// 以前用import 现在都用use ，import存在重复导入问题
+@use 'config' as *;
+// 这个方法是将这个包再导出去
+@forward 'config';
+/* 
+@include b(button){
+    color:red //----这个就是@content
+}
+*/
+// .z-button{}
+@mixin b($block){
+    $B:$namespace+'-'+$block;
+    .#{$B}{
+        @content
+    }
+};
+// z-button.is-xxx
+// z-button.is-disabled
+@mixin when($state){
+    @at-root {//@at-root 放在根下
+        #{$state-prefix+$state}{
+            @content
+        }
+    }
+};
+// &--primary =>.z-button-primary
+@mixin m($modifier){
+    @at-root {
+        #{&+$modifier-separator+$modifier}{
+            @content
+        }
+    }
+};
+@mixin e($element){
+    @at-root {
+        #{&+$element-separator+$element}{
+            @content
+        }
+    }
+};
+
+@mixin button-variant($color,$background-color,$border-color){
+  color:$color;
+  background:$background-color;
+  border-color:$border-color
+}
